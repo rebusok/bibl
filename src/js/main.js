@@ -2,17 +2,16 @@ import './lib/lib';
 import $ from './lib/lib';
 
 
-$('button').on('click', function(){
-    $('button').fadeOut(2000);
+$('#first').on('click', () =>{
+    $('div').eq(1).fadeOut(800);
 });
-$('div').eq(2).on('click', function(){
-    $('button').eq(1).fadeIn(2000, 'inline-block');
-});
-$('div').addAtribute('woooj', 300).toggleAtribute('woooj').toggleAtribute('woooj', 600);
-$('div').click(function(){
-    console.log($(this).index());
+$('[data-coutn="second"]').on('click', () =>{
+    $('div').eq(2).fadeOut(800);
 });
 
-// console.log($('div').eq(2).find('.more'));
-// console.log($('.some').closest('.findmedsd').addClass('sdsda'));
-$('.more').fadeOut(1800);
+$('button').eq(2).on('click', () => {
+    $('.w-500').fadeOut(800);
+});
+$('button').eq(3).on('click', () => {
+    $('.w-500').fadeToggle(800);
+});

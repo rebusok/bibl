@@ -9,27 +9,65 @@
 </head>
 <body>
     <div class="container">
-    <div>1</div>
-    <div class="active">2</div>
-    <div class="findme">
-        <div class="some">21312</div>
-        <div class="more">eeq</div>
-        <div class="some">213123312</div>
-        <div class="more">2131dda2</div>
-        <div class="some">dasda12</div>
-    </div>
-    <button class="btn btn-dark">Click Me</button>
-    <button class="btn btn-primary">Click Me</button> 
-    <button class="btn btn-success">Click Me</button> 
-    <button class="btn btn-dangers">Click Me</button> 
-    <button class="btn btn-warning">Click Me</button> 
-    <hr>
-    <button class="btn btn-outline-dark">Click Me</button>
-    <button class="btn btn-outline-primary">Click Me</button> 
-    <button class="btn btn-outline-success">Click Me</button> 
-    <button class="btn btn-outline-dangers">Click Me</button> 
-    <button class="btn btn-outline-warning">Click Me</button> 
+    
+        <button class="btn btn-primary m-20" id="first">Fade out first text</button>
+        <button class="btn btn-dark m-20" data-coutn="second">Fade out first text</button>  
+        <button class="btn btn-warning m-20">Fade out all text</button>
+        <button class="btn btn-success m-20">In out all text</button> 
+        
+            <!-- dropDown -menu -->
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" id="dropdownMenuButton">Dropdown Button</button>
+            <div class="dropdown-menu" data-toggle-id="dropdownMenuButton">
+                <a href="#" class="dropdown-item">Action</a>
+                <a href="#" class="dropdown-item">Action-2</a>
+                <a href="#" class="dropdown-item">Action-3</a>
+            </div>
+        </div>
 
+        <!-- card -->
+        <div class="goods d-flex f-space-around">
+            <div class="card">
+                <img src="https://images.ctfassets.net/hrltx12pl8hq/5596z2BCR9KmT1KeRBrOQa/4070fd4e2f1a13f71c2c46afeb18e41c/shutterstock_451077043-hero1.jpg?fit=fill&w=800&h=400" alt="photo" class="card-img">
+                <div class="card-body">
+                    <div class="card-title">Card title</div>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid molestiae quidem obcaecati, iste praesentium quod voluptatum ex non soluta doloribus fugiat ad et, ab nulla similique dicta suscipit pariatur vero.Magnam quisquam itaque, ex blanditiis veritatis accusamus pariatur, aliquam, dignissimos esse unde tempore! Ex amet sint maiores! Blanditiis facere velit, dignissimos perferendis eum, delectus deleniti, veritatis nam iusto quas ipsum!</p>
+                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#examlModal">link to</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.ctfassets.net/hrltx12pl8hq/5596z2BCR9KmT1KeRBrOQa/4070fd4e2f1a13f71c2c46afeb18e41c/shutterstock_451077043-hero1.jpg?fit=fill&w=800&h=400" alt="photo" class="card-img">
+                <div class="card-body">
+                    <div class="card-title">Card title #2</div>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid molestiae quidem obcaecati, iste praesentium quod voluptatum ex non soluta doloribus fugiat ad et, ab nulla similique dicta suscipit pariatur vero.Magnam quisquam itaque, ex blanditiis veritatis accusamus pariatur, aliquam, dignissimos esse unde tempore! Ex amet sint maiores! Blanditiis facere velit, dignissimos perferendis eum, delectus deleniti, veritatis nam iusto quas ipsum!</p>
+                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#examlModal">link to</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal -->
+
+        <div class="modal" id="examlModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <button class="close" data-close>
+                        <span>&times;</span>
+                    </button>
+                    <div class="modal-header">
+                        <div class="modal-title">
+                            Modal title
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam exercitationem eum aliquam explicabo est veniam voluptatibus temporibus cumque tempora fugit eius fugiat dolorem iure eligendi quo, neque ut. Nemo, repellat.
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-dangers" data-close>Close</button>
+                        <button class="btn btn-success">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div> 
     <script src='script.js'></script>
 </body>
