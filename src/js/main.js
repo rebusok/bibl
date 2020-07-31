@@ -15,3 +15,35 @@ $('button').eq(2).on('click', () => {
 $('button').eq(3).on('click', () => {
     $('.w-500').fadeToggle(800);
 });
+
+$('#trigger').click(() => $('#trigger').createModal(
+    {
+        textTitle: 'Modal title',
+        textBody: 'orem ipsum dolor sit amet consectetur adipisicing elit.',
+        btnCount: 3,
+        btnSetting:[
+            [
+                'Close',
+                ['btn-dangers', 'mr-10'],
+                true
+            ],
+            [
+                'Save changes',
+                ['btn-success'],
+                false,
+                ()=>{
+                    alert("save");
+                }
+            ],
+            [
+                'Extra btn',
+                ['btn-dark', 'ml-10'],
+                false,
+                () => {
+                    alert("warning");
+                }
+            ]
+            
+        ]
+    }
+));

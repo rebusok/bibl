@@ -1912,36 +1912,46 @@ Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])('.dropdown-toggle').dropdo
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
+/* harmony import */ var core_js_modules_web_dom_collections_iterator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.iterator */ "./node_modules/core-js/modules/web.dom-collections.iterator.js");
+/* harmony import */ var core_js_modules_web_dom_collections_iterator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
 
 
-_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.modal = function () {
+
+_core__WEBPACK_IMPORTED_MODULE_1__["default"].prototype.modal = function (created) {
   for (let i = 0; i < this.length; i++) {
     let scroll = calcScroll();
     const target = this[i].getAttribute('data-target');
-    Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])(this[i]).click(e => {
+    Object(_core__WEBPACK_IMPORTED_MODULE_1__["default"])(this[i]).click(e => {
       e.preventDefault();
-      Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])(target).fadeIn(500);
+      Object(_core__WEBPACK_IMPORTED_MODULE_1__["default"])(target).fadeIn(500);
       document.body.style.overflow = 'hidden';
       document.body.style.marginRight = `${scroll}px`;
     });
-  }
+    const closeElemets = document.querySelectorAll(`${target} [data-close]`);
+    closeElemets.forEach(elem => {
+      Object(_core__WEBPACK_IMPORTED_MODULE_1__["default"])(elem).click(() => {
+        Object(_core__WEBPACK_IMPORTED_MODULE_1__["default"])(target).fadeOut(500);
+        document.body.style.overflow = '';
+        document.body.style.marginRight = `0px`;
 
-  const closeElemets = document.querySelectorAll('[data-close]');
-  closeElemets.forEach(elem => {
-    Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])(elem).click(() => {
-      Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])('.modal').fadeOut(500);
-      document.body.style.overflow = '';
-      document.body.style.marginRight = `0px`;
+        if (created) {
+          document.querySelector(target).remove();
+        }
+      });
     });
-  });
-  Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])('.modal').click(e => {
-    if (e.target.classList.contains('modal')) {
-      Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])('.modal').fadeOut(500);
-      document.body.style.overflow = '';
-      document.body.style.marginRight = `0px`;
-    }
-  });
+    Object(_core__WEBPACK_IMPORTED_MODULE_1__["default"])(target).click(e => {
+      if (e.target.classList.contains('modal')) {
+        Object(_core__WEBPACK_IMPORTED_MODULE_1__["default"])(target).fadeOut(500);
+        document.body.style.overflow = '';
+        document.body.style.marginRight = `0px`;
+
+        if (created) {
+          document.querySelector(target).remove();
+        }
+      }
+    });
+  }
 };
 
 function calcScroll() {
@@ -1956,7 +1966,62 @@ function calcScroll() {
   return scrollWidth;
 }
 
-Object(_core__WEBPACK_IMPORTED_MODULE_0__["default"])('[data-toggle="modal"]').modal();
+Object(_core__WEBPACK_IMPORTED_MODULE_1__["default"])('[data-toggle="modal"]').modal();
+
+_core__WEBPACK_IMPORTED_MODULE_1__["default"].prototype.createModal = function ({
+  textTitle,
+  textBody,
+  btnCount,
+  btnSetting
+} = {}) {
+  for (let i = 0; i < this.length; i++) {
+    let modal = document.createElement('div');
+    Object(_core__WEBPACK_IMPORTED_MODULE_1__["default"])(modal).addClass('modal');
+    Object(_core__WEBPACK_IMPORTED_MODULE_1__["default"])(modal).addAtribute('id', this[i].getAttribute('data-target').slice(1));
+    const buttons = [];
+
+    for (let j = 0; j < btnCount; j++) {
+      let btn = document.createElement('button');
+      Object(_core__WEBPACK_IMPORTED_MODULE_1__["default"])(btn).addClass('btn', ...btnSetting[j][1]);
+      btn.textContent = btnSetting[j][0];
+
+      if (btnSetting[j][2]) {
+        btn.setAttribute('data-close', true);
+      }
+
+      if (btnSetting[j][3] && typeof btnSetting[j][3] === 'function') {
+        Object(_core__WEBPACK_IMPORTED_MODULE_1__["default"])(btn).click(btnSetting[j][3]);
+      }
+
+      buttons.push(btn);
+    }
+
+    Object(_core__WEBPACK_IMPORTED_MODULE_1__["default"])(modal).html(`
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <button class="close" data-close>
+                        <span>&times;</span>
+                    </button>
+                    <div class="modal-header">
+                        <div class="modal-title">
+                            ${textTitle}
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        ${textBody}
+                    </div>
+                    <div class="modal-footer">
+                        
+                    </div>
+                </div>
+             </div>
+        `);
+    modal.querySelector(".modal-footer").append(...buttons);
+    document.body.appendChild(modal);
+    Object(_core__WEBPACK_IMPORTED_MODULE_1__["default"])(this[i]).modal(true);
+    Object(_core__WEBPACK_IMPORTED_MODULE_1__["default"])(this[i].getAttribute('data-target')).fadeIn(500);
+  }
+};
 
 /***/ }),
 
@@ -2463,6 +2528,14 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.addAtribute = function (
   return this;
 };
 
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.setAttr = function (nameAtribute) {
+  for (let i = 0; i < this.length; i++) {
+    this[i].getAttribute(nameAtribute);
+  }
+
+  return this;
+};
+
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.removeAtribute = function (nameAtribute) {
   for (let i = 0; i < this.length; i++) {
     this[i].removeAttribute(nameAtribute);
@@ -2509,6 +2582,16 @@ Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('button').eq(2).on('cli
 Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('button').eq(3).on('click', () => {
   Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-500').fadeToggle(800);
 });
+Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('#trigger').click(() => Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('#trigger').createModal({
+  textTitle: 'Modal title',
+  textBody: 'orem ipsum dolor sit amet consectetur adipisicing elit.',
+  btnCount: 3,
+  btnSetting: [['Close', ['btn-dangers', 'mr-10'], true], ['Save changes', ['btn-success'], false, () => {
+    alert("save");
+  }], ['Extra btn', ['btn-dark', 'ml-10'], false, () => {
+    alert("warning");
+  }]]
+}));
 
 /***/ })
 

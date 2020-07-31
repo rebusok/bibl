@@ -48,6 +48,13 @@ $.prototype.addAtribute = function (name, value) {
     }
     return this;
 };
+$.prototype.setAttr = function (nameAtribute) {
+    for (let i = 0; i < this.length; i++) {
+        this[i].getAttribute(nameAtribute);
+    }
+ 
+    return this;
+};
  
 $.prototype.removeAtribute = function (nameAtribute) {
     for (let i = 0; i < this.length; i++) {
